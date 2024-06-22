@@ -18,7 +18,10 @@ export const fetchRegister = async (username,password,role) => {
 
 export const fetchLogin = async (username,password) => {
     try {
-        const response = await axios.post(`${BACKEND_URL}/auth/login`, {username,password});
+        const response = await axios.post(`${BACKEND_URL}/auth/login`, {
+            'username': username,
+            'password': password,
+        });
         //localStorage.setItem('token', response.data.token);
         //localStorage.setItem('userId', response.data.userId);
         return response;
