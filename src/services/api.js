@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 
 const BACKEND_URL = 'https://cepnq6rjbk.execute-api.us-east-1.amazonaws.com'; // Spring Boot
 
@@ -22,8 +23,10 @@ export const fetchLogin = async (username,password) => {
             'username': username,
             'password': password,
         });
-        //localStorage.setItem('token', response.data.token);
-        //localStorage.setItem('userId', response.data.userId);
+        localStorage.setItem('token', response.data.token);
+        const decodedToken = jwtDecode(response.data.token);
+        localStorage.setItem('userId', decodedToken.username);
+        localStorage.setItem('role', decodedToken.role);
         return response;
     } catch (error) {
         console.error(error);
