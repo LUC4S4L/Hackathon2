@@ -14,7 +14,7 @@ export const CreateItem = () => {
 
     const handleCreateItem = async () => {
         try {
-            const response = await createItem({ boughtInLastMonth, imgUrl, isBestSeller, price, stars, title })
+            const response = await createItem(boughtInLastMonth, imgUrl, isBestSeller, price, stars, title)
             console.log(response)
             navigate(`/items`)
         } catch (error) {

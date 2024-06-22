@@ -31,10 +31,17 @@ export const fetchLogin = async (username,password) => {
     }
 };
 
-export const createItem = async (body) => {
+export const createItem = async (boughtInLastMonth, imgUrl, isBestSeller, price, stars, title) => {
     try {
         const token = localStorage.getItem('token');
-        const response = await axios.post(`${BACKEND_URL}/items`, body, {
+        const response = await axios.post(`${BACKEND_URL}/items`, {
+            'boughtInLastMonth': boughtInLastMonth,
+            'imgUrl': imgUrl,
+            'isBestSeller': isBestSeller,
+            'price': price,
+            'stars': stars,
+            'title': title,
+        }, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -46,10 +53,17 @@ export const createItem = async (body) => {
     }
 };
 
-export const updateItem = async (body) => {
+export const updateItem = async (boughtInLastMonth, imgUrl, isBestSeller, price, stars, title) => {
     try {
         const token = localStorage.getItem('token');
-        const response = await axios.put(`${BACKEND_URL}/items`, body, {
+        const response = await axios.put(`${BACKEND_URL}/items`, {
+            'boughtInLastMonth': boughtInLastMonth,
+            'imgUrl': imgUrl,
+            'isBestSeller': isBestSeller,
+            'price': price,
+            'stars': stars,
+            'title': title,
+        }, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -143,10 +157,14 @@ export const addItem = async (itemId) => {
     }
 }
 
-export const deleteCartItem = async (body) => {
+export const deleteCartItem = async (itemId) => {
     try {
         const token = localStorage.getItem('token');
-        const response = await axios.delete(`${BACKEND_URL}/cart`, body, {
+        const userId = localStorage.getItem('userId');
+        const response = await axios.delete(`${BACKEND_URL}/cart`, {
+            'userId': userId,
+            'itemId': itemId,
+        }, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

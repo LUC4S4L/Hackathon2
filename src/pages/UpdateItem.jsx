@@ -14,7 +14,7 @@ export const UpdateItem = (boughtInLastMonth, imgUrl, isBestSeller, price, stars
 
     const handleCreateItem = async () => {
         try {
-            const response = await updateItem({ boughtInLastMonth, imgUrl, isBestSeller, price, stars, title })
+            const response = await updateItem(boughtInLastMonth, imgUrl, isBestSeller, price, stars, title)
             console.log(response)
             navigate(`/items`)
         } catch (error) {
