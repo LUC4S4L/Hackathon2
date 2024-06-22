@@ -12,7 +12,8 @@ const Register = () => {
         e.preventDefault();
         try{
             const res=await fetchRegister(username,password,role);
-            if(res.status===200){
+            if(res){
+                console.log('Registration Successful!');
                 navigate('/login');
             }
         }catch(error){
