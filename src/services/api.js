@@ -16,6 +16,7 @@ export const login = async (body) => {
     try {
         const response = await axios.post(`${BACKEND_URL}/auth/login`, body);
         localStorage.setItem('token', response.data.token);
+        localStorage.setItem('userId', response.data.userId);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -143,9 +144,10 @@ export const deleteCartItem = async (body) => {
     }
 }
 
-export const getCart = async (userId) => {
+export const getCart = async () => {
     try {
         const token = localStorage.getItem('token');
+        const userId = localStorage.getItem('userId');
         const response = await axios.get(`${BACKEND_URL}/cart/${userId}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
