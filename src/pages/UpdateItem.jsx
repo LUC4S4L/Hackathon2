@@ -3,13 +3,13 @@ import React, {useState} from 'react'
 import { updateItem } from '../services/api'
 import { navigate } from 'react-router-dom'
 
-export const UpdateItem = (boughtInLastMonth, imgUrl, isBestSeller, price, stars, title) => {
-    const [boughtInLastMonth, setBoughtInLastMonth] = useState(boughtInLastMonth)
-    const [imgUrl, setImgUrl] = useState(imgUrl)
-    const [isBestSeller, setIsBestSeller] = useState(isBestSeller)
-    const [price, setPrice] = useState(price)
-    const [stars, setStars] = useState(stars)
-    const [title, setTitle] = useState(title)
+export const UpdateItem = () => {
+    const [boughtInLastMonth, setBoughtInLastMonth] = useState(0)
+    const [imgUrl, setImgUrl] = useState('')
+    const [isBestSeller, setIsBestSeller] = useState(false)
+    const [price, setPrice] = useState(0.0)
+    const [stars, setStars] = useState(0)
+    const [title, setTitle] = useState('')
 
     const handleCreateItem = async () => {
         try {
