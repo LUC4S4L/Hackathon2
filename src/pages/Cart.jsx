@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getCart } from '../services/api'
+import { getCart, buyCart } from '../services/api'
 
 export const Cart = () => {
     const [cart, setCart] = useState([])
@@ -18,6 +18,15 @@ export const Cart = () => {
         }
     }
 
+    const buyItems = async () => {
+        try {
+            const response = await buyCart(cart)
+            console.log(response)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
     useEffect(() => {
         getCartItems()
     }, [])
@@ -27,6 +36,7 @@ export const Cart = () => {
             {cart.map((item, index) => (
                 <div key={index}>{item.name}</div>
             ))}
+            <button onClick={buyItems}>Comprar</button>
             {isLoading && <p>Cargando carrito...</p>}
         </div>
     )

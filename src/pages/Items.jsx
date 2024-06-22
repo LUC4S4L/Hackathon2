@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getItems } from '../services/api';
+import { addItem, getItems } from '../services/api';
 
 const Items = () => {
     const [items, setItems] = useState([]);
@@ -21,6 +21,15 @@ const Items = () => {
         }
     };
 
+    const addItemToCart = async (item) => {
+        try {
+            const response = await addItem(item.id);
+            console.log(response);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     useEffect(() => {
         getItemsPaginated();
     }, []);
@@ -38,7 +47,10 @@ const Items = () => {
     return (
         <div>
             {items.map((item, index) => (
-                <div key={index}>{item.name}</div>
+                <div key={index}>
+                    {item.name}
+                    <button onClick={() => addItemToCart(item.id)}>Agregar al carrito</button>
+                </div>
             ))}
             {isLoading && <p>Cargando más ítems...</p>}
         </div>

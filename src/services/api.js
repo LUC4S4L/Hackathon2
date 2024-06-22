@@ -102,7 +102,10 @@ export const getItems = async (limit, lastKey) => {
 export const buyCart = async (body) => {
     try {
         const token = localStorage.getItem('token');
-        const response = await axios.post(`${BACKEND_URL}/buy`, body, {
+        const userId = localStorage.getItem('userId');
+        const response = await axios.post(`${BACKEND_URL}/buy`, {
+            'userId': userId,
+        }, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -114,10 +117,14 @@ export const buyCart = async (body) => {
     }
 }
 
-export const addItem = async (body) => {
+export const addItem = async (itemId) => {
     try {
         const token = localStorage.getItem('token');
-        const response = await axios.post(`${BACKEND_URL}/cart`, body, {
+        const userId = localStorage.getItem('userId');
+        const response = await axios.post(`${BACKEND_URL}/cart`, {
+            'userId': userId,
+            'itemId': itemId,
+        }, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
