@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 
-import { Button } from '../components/Button'
 import { updateItem } from '../services/api'
 import { navigate } from 'react-router-dom'
 
