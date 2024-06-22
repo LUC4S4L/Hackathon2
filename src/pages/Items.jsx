@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { addItem, getItems } from '../services/api';
+import { useNavigate } from 'react-router-dom';
+import { getItems } from '../services/api';
 
 const Items = () => {
+    const navigate = useNavigate();
+
     const [items, setItems] = useState([]);
     const [lastKey, setLastKey] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -30,6 +33,10 @@ const Items = () => {
         }
     }
 
+    const createItem = async () => {
+        navigate(`/item/${response.id}`);
+    }
+
     useEffect(() => {
         getItemsPaginated();
     }, []);
@@ -46,6 +53,7 @@ const Items = () => {
 
     return (
         <div>
+            <button onClick={createItem}>Crear ítem</button>
             {items.map((item, index) => (
                 <div key={index}>
                     {item.name}
