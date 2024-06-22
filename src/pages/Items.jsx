@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getItems, deleteItem } from '../services/api';
+import '../styles/Items.css'
 
 const Items = () => {
     const navigate = useNavigate();
@@ -34,7 +35,7 @@ const Items = () => {
     }
 
     const createItem = async () => {
-        navigate(`/create-item`);
+        navigate(`/item/${response.id}`);
     }
 
     const removeItem = async (id) => {
@@ -61,13 +62,15 @@ const Items = () => {
     }, [isLoading]);
 
     return (
-        <div>
+        <div className="items-container">
             <button onClick={createItem}>Crear ítem</button>
             {items.map((item, index) => (
-                <div key={index}>
-                    {item.name}
+                <div key={index} className="item">
+                    <img src={item.imgUrl} alt={item.title} className="item-image" />
+                    <h2 className="item-title">{item.title}</h2>
+                    <p className="item-price">Precio: ${item.price}</p>
+                    <p className="item-stars">Estrellas: {item.stars}</p>
                     <button onClick={() => addItemToCart(item.id)}>Agregar al carrito</button>
-                    <button onClick={() => navigate(`/update-item/${item.id}`)}>Editar</button>
                     <button onClick={() => removeItem(item.id)}>Eliminar</button>
                 </div>
             ))}
