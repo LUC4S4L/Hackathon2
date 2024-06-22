@@ -34,7 +34,7 @@ const Items = () => {
     }
 
     const createItem = async () => {
-        navigate(`/item/${response.id}`);
+        navigate(`/create-item`);
     }
 
     const removeItem = async (id) => {
@@ -67,6 +67,7 @@ const Items = () => {
                 <div key={index}>
                     {item.name}
                     <button onClick={() => addItemToCart(item.id)}>Agregar al carrito</button>
+                    <button onClick={() => navigate(`/update-item/${item.id}`)}>Editar</button>
                     <button onClick={() => removeItem(item.id)}>Eliminar</button>
                 </div>
             ))}
