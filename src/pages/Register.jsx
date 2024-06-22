@@ -12,12 +12,16 @@ const Register = () => {
         e.preventDefault();
         try{
             const res=await fetchRegister(username,password,role);
-            if(res.status===200){
+            if(res){
+                console.log('Registration Successful!');
                 navigate('/login');
             }
         }catch(error){
             console.log('Registration failed: ',error);
         }
+    }
+    const handleLoginRedirect=()=>{
+        navigate('/login');
     }
 
   return (
@@ -30,7 +34,8 @@ const Register = () => {
         <input onChange={(e)=>{setPassword(e.target.value)}} type="password" id="password" required/>
         <label htmlFor='role'>Role: Client or Admin</label>
         <input onChange={(e)=>{setRole(e.target.value)}} id="role" required/>
-        <button>Register</button>
+        <button type="submit">Register</button>
+        <button type="button" onClick={handleLoginRedirect}>Go to Login</button>
     </form>
     </>
   )
