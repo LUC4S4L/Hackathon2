@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getItems } from '../services/api';
+import { getItems, deleteItem } from '../services/api';
 
 const Items = () => {
     const navigate = useNavigate();
@@ -37,6 +37,15 @@ const Items = () => {
         navigate(`/item/${response.id}`);
     }
 
+    const removeItem = async (id) => {
+        try {
+            const response = await deleteItem(id);
+            console.log(response);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     useEffect(() => {
         getItemsPaginated();
     }, []);
@@ -58,6 +67,7 @@ const Items = () => {
                 <div key={index}>
                     {item.name}
                     <button onClick={() => addItemToCart(item.id)}>Agregar al carrito</button>
+                    <button onClick={() => removeItem(item.id)}>Eliminar</button>
                 </div>
             ))}
             {isLoading && <p>Cargando más ítems...</p>}
