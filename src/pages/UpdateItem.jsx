@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 import { updateItem } from '../services/api'
-import { navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export const UpdateItem = () => {
     const [boughtInLastMonth, setBoughtInLastMonth] = useState(0)
@@ -15,7 +15,7 @@ export const UpdateItem = () => {
         try {
             const response = await updateItem(boughtInLastMonth, imgUrl, isBestSeller, price, stars, title)
             console.log(response)
-            navigate(`/items`)
+            useNavigate(`/items`)
         } catch (error) {
             console.error(error)
         }

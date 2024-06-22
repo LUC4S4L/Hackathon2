@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 import { createItem } from '../services/api'
-import { navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export const CreateItem = () => {
     const [boughtInLastMonth, setBoughtInLastMonth] = useState(0)
