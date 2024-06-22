@@ -4,7 +4,11 @@ const BACKEND_URL = 'https://cepnq6rjbk.execute-api.us-east-1.amazonaws.com'; //
 
 export const fetchRegister = async (username,password,role) => {
     try {
-        const response = await axios.post(`${BACKEND_URL}/auth/register`, {username,password,role});
+        const response = await axios.post(`${BACKEND_URL}/auth/register`, {
+            'username': username,
+            'password': password,
+            'role': role,
+        });
         return response;
     } catch (error) {
         console.error(error);
