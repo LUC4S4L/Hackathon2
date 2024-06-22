@@ -15,8 +15,8 @@ const Items = () => {
         try {
             const limit = 10;
             const response = await getItems(limit, lastKey);
-            setItems(prevItems => [...prevItems, ...response.Items]);
-            setLastKey(response.LastKey);
+            setItems(prevItems => [...prevItems, ...response.items]);
+            setLastKey(response.lastKey.asin);
         } catch (error) {
             console.error(error);
         } finally {
