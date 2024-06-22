@@ -27,7 +27,7 @@ const Register = () => {
         <label htmlFor='username'>Username</label>
         <input onChange={(e)=>{setUsername(e.target.value)}} id="username" required/>
         <label htmlFor='password'>Password</label>
-        <input onChange={(e)=>{setPassword(e.target.value)}} id="password" required/>
+        <input onChange={(e)=>{setPassword(e.target.value)}} type="password" id="password" required/>
         <label htmlFor='role'>Role: Client or Admin</label>
         <input onChange={(e)=>{setRole(e.target.value)}} id="role" required/>
         <button>Register</button>
