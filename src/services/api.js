@@ -2,22 +2,22 @@ import axios from 'axios';
 
 const BACKEND_URL = 'https://cepnq6rjbk.execute-api.us-east-1.amazonaws.com'; // Spring Boot
 
-export const register = async (body) => {
+export const fetchRegister = async (username,password,role) => {
     try {
-        const response = await axios.post(`${BACKEND_URL}/auth/register`, body);
-        return response.data;
+        const response = await axios.post(`${BACKEND_URL}/auth/register`, {username,password,role});
+        return response;
     } catch (error) {
         console.error(error);
         return null;
     }
 };
 
-export const login = async (body) => {
+export const fetchLogin = async (username,password) => {
     try {
-        const response = await axios.post(`${BACKEND_URL}/auth/login`, body);
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('userId', response.data.userId);
-        return response.data;
+        const response = await axios.post(`${BACKEND_URL}/auth/login`, {username,password});
+        //localStorage.setItem('token', response.data.token);
+        //localStorage.setItem('userId', response.data.userId);
+        return response;
     } catch (error) {
         console.error(error);
         return null;
